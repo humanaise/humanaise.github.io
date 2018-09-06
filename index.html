@@ -38,40 +38,11 @@
     <script>
 	var arr1 = {};
   var key;
+  var jsonConfig;
       function render(i) {
         //var jsonConfig = $('[data-contain="config"]').val();
 		if(!i)
 			i=0;
-		var jsonConfig = [{
-		"key":"a",
-"image":"https://static8.cilory.com/260520-large_default/nologo-peach-polo-t-shirt.jpg",
-"question":"What is your favorite programming language?",
-  "answers":[
-      "JavaScript",
-      "PHP",
-      "Ruby",
-      "Python"
-  ]
-},{
-"key":"b",
-"image":"https://static8.cilory.com/260520-large_default/nologo-peach-polo-t-shirt.jpg",
-"question":"What is the color of this shirt?",
-  "answers":[
-      "Red",
-      "Green",
-      "Blue",
-      "Orange"
-  ]
-},{
-"key":"c",
-"image":"https://static8.cilory.com/260520-large_default/nologo-peach-polo-t-shirt.jpg",
-"question":"What is the color of this shirt?",
-  "answers":[
-      "https://static8.cilory.com/260520-large_default/nologo-peach-polo-t-shirt.jpg",
-      "https://static8.cilory.com/260520-large_default/nologo-peach-polo-t-shirt.jpg"
-  ]
-}]
-//console.log(jsonConfig.length);
 
 		$('#image1').attr("src", jsonConfig[i].image);
         $('#survey').html('');
@@ -83,9 +54,16 @@
           render(i+1);
         });
       }
+$.ajax({
+            url: "http://13.233.9.173:5000/product/32",
+            type: 'GET',
+            success: function(res) {
+                jsonConfig = res;
+				render();
+            }
+        });
 
-
-      render();
+      
     </script>
     <script type="text/javascript">
 
