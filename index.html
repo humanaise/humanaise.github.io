@@ -45,6 +45,7 @@
 			i=0;
 
 		$('#image1').attr("src", jsonConfig[i].image);
+		
         $('#survey').html('');
         $('#survey').renderSurvey(jsonConfig[i]);
         $('#survey form').on('submit', function(e) {
@@ -52,6 +53,21 @@
           e.preventDefault();
 		  if(i<jsonConfig.length-1)
           render(i+1);
+		  else {
+		  $.ajax({
+            url: "http://13.233.9.173:5000/product",
+            type: 'POST',
+			headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+			dataType: 'json',
+			data: JSON.stringify(arr1),
+            success: function() {
+               alert("Thankyou");
+            }
+        });
+		  }
         });
       }
 $.ajax({
@@ -59,6 +75,8 @@ $.ajax({
             type: 'GET',
             success: function(res) {
                 jsonConfig = res;
+				arr1.id = [];
+				arr1.id.push(jsonConfig[0].id.toString());
 				render();
             }
         });
