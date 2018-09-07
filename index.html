@@ -55,7 +55,7 @@
           render(i+1);
 		  else {
 		  $.ajax({
-            url: "http://13.233.9.173:5000/product",
+            url: "http://13.126.212.184:5000/product",
             type: 'POST',
 			headers: {
 					'Accept': 'application/json',
@@ -74,7 +74,7 @@
         });
       }
 $.ajax({
-            url: "http://13.233.9.173:5000/product/43",
+            url: "http://13.126.212.184:5000/product/43",
             type: 'GET',
             success: function(res) {
                 jsonConfig = res;
